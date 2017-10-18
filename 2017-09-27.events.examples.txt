@@ -1,0 +1,142 @@
+
+2017 09 04 00 Mon @CineMAXX "sneak preview"
+http://www.imdb.com/title/tt4572792/ "The Book of Henry"
+http://www.imdb.com/title/tt5651338/ "Jugend ohne Gott"
+
+2017 09 06 00 Wed 19h @Pierogarnia "Cryptoparty"
+https://www.meetup.com/cryptopartybln/events/239610379/
+https://www.cryptoparty.in/berlin/sprechstunde
+
+2017 09 11 00 Mon 19-22h @Walther_Koenig "Snowden Files"
+Buchhandlung Walther König Berlin +49-30-25760980
+berlinburg@buchhandlung-walther-koenig.de
+Burgstraße 27, 10178 Berlin
+https://www.openstreetmap.org/node/1075544297
+open: Mo-Sa 10-20h
+Buchvorstellung und Diskussion:
+"A Field Guide to the Snowden Files"
+Media, Arts, Archives 2013-2017
+
+2017 09 11 00 Mon Day1/2 "Jobaktiv Berlin"
+2017 09 12 00 Tue Day2/2"Jobaktiv Berlin"
+Mo+Di 11.+12.09.2017  "Jobaktiv Berlin"  10-17h, Eintritt frei
+https://www.messen.de/de/16377/berlin/jobaktiv-berlin/info
+http://www.jobaktiv-berlin.de/ -> (redirect!)
+https://www3.arbeitsagentur.de/web/content/DE/dienststellen/rdbb/berlinnord/Agentur/VeranstaltungenvorOrt/Detail/index.htm?dfContentId=L6019022DSTBAI621857
+https://www3.arbeitsagentur.de/web/wcm/idc/groups/public/documents/webdatei/mdaw/mje3/~edisp/egov-content538321.pdf
+* Aus- und Weiterbildung
+* Berufs- und Studienwahl
+* Informations- und Networkingplattform
+"Jobangebote, Ausbildungsstellen, kostenloses
+Bewerbungsfoto-Shooting, Farb - und Stilberatung,
+Bewerbungsmappen-Check, Fachvorträge, Workshops."
+
+2017 09 12 00 Tue 19-23h @f2a "Cryptoparty+Freifunk"
+"Digitale Kultur des Teilens - Cryptoparty+Freifunk"
+http://bbb.wandelwoche.org/veranstaltung/cryptoparty/
+
+2017 09 12 00 Tue 20h @cccb "Wahlhack"
+https://berlin.ccc.de/wiki/Datengarten/80
+Datengarten #80: Linus Neumann (@linuzifer) "Wahlhack"
+twitter: https://twitter.com/linuzifer
+Sprache: Deutsch
+Recording/Streaming: Ja
+http://ccc.de/de/updates/2017/pc-wahl
+
+2017 09 20 00 Wed 10-17h @IN-Berlin "Free Code Camp"
+https://www.meetup.com/FreeCodeCamp-Berlin/events/243354643/
+https://www.facebook.com/events/555021774838295/
+
+2017 09 15 Fri KIEL Day1/2 10-17h KIELUX
+2017 09 16 Sat KIEL Day2/2 10-17h KIELUX
+Kieler Open Source + Linux Tage
+.
+2017-09-15/16 Fri+Sat 10-17h Kiel
+KITZ Kieler Open Source + Linux Tage
+http://www.kielux.de/
+http://www.kilux.de/index.php?seite=vortragsplaner.html&untermenu=Vortrag%20eintragen
+
+2017 09 16 00 Sat ALLDAY "Software Freedom Day" http://softwarefreedomday.org/
+
+  2017 09 16 00 Sat 14-19h @ThoughtworksWerkstatt "Crypto-Engel Flugstunden"
+  https://www.cryptoparty.in/berlin/engel-flugstunden
+
+2017 09 16 00 Sat 16-19h @c-base "Software Freedom Day"
+http://prae.me/sfdberlin17
+http://wiki.softwarefreedomday.org/2017/Germany/Berlin/JointSFDBerlin
+ab 16h:
+* Volker Grassmuck: "Einführung"
+* Daniel Guagnin (praemandatum): "Datenschutz und Privatsphäre mit Freier Software schützen"
+* $REFERENT: Potentiale Freier Software im Bildungsbereich
+* Peggy Sylopp: "Open Source Community Wireless Networks in Brasilien: Wie infrastrukturarmen Gegenden selbst verwaltete Netze entstehen"
+* Polina Malaja (FSFE): "Public Money - Public Code"
+*? Datenschutz und Privatsphäre mit Freier Software
+*? Open Source Gemeinschafts-Netzwerke als Empowerment für infrastrukturarme Gegenden.
+18.30h: Offene Diskussionrunde ("Fishbowl"): Potentiale und Hindernisse in der
+        Anwendung und Verbreitung von Freier Software? Was tun und wie?
+Organisation: Daniel Guagnin sfd@guagnin.de, Eventpate: Robert Clausecker
+
+2017 09 18 00 Mon 19h @D13 "Cryptoparty"
+"Offener Montag – Cryptoparty mit der GJ Mitte"
+
+2017 09 19 00 Tue 20h @Autorenbuchhandlung "Salzmann: Außer sich"
+"Sasha Marianna Salzmann: Außer sich"
+http://www.tagesspiegel.de/berlin/queerspiegel/romandebuet-von-sasha-marianna-salzmann-die-lila-augen-meines-urgrossvaters/20304982.html
+
+2017 09 20 00 Wed 09:30h @IN-Berlin Schlüsselübergabe an MichaelS
+2017 09 20 00 Wed 10-17h @IN-Berlin "#FreeCodeCamp Meetup"
+https://www.meetup.com/FreeCodeCamp-Berlin/events/243354643/
+https://www.facebook.com/groups/free.code.camp.berlin/
+https://www.facebook.com/events/555021774838295/
+https://gitter.im/FreeCodeCampBerlin/Lobby
+
+2017 09 22 00 Fr 18-23h @IN-Berlin Day1/3 VimFest.de
+2017 09 23 00 Sa 10-22h @IN-Berlin Day2/3 VimFest.de
+2017 09 24 00 So 10-18h @IN-Berlin Day3/3 VimFest.de
+participation: http://doodle.com/poll/dadrizhcp9uevde8
+chat: http://webchat.freenode.net/?channels=%23vimfest&uio=MTY9dHJ1ZSY5PXRydWUmMTE9MTIz72
+pad:  TODO https://vimfest.titanpad.com/2016
+pad:  TODO https://events.titanpad.com/2016-vimfest?
+2017-06-27 vrkalender: eingetragen
+2017-06-27 vrkalender: bestätigung
+.
+  chat: https://gitter.im/vimberlin/vimfest
+  mail: https://groups.google.com/group/vimberlin/
+  twitter: https://twitter.com/vim_fest
+  github: https://github.com/vimberlin/vimfest
+.
+tweet:
+  2017-09-22/24 Fr-Sa @IN-Berlin
+  #vimfest17 VimFest.de http://vimfest.de/
+  rsvp: http://doodle.com/poll/dadrizhcp9uevde8
+themen: einsteiger, neovim, plugins, vimgolf
+food: freitag abend: essen gehen!
+
+2017 10 01 00 Sun 17-21h @IN-Berlin "Shell Tools #12"
+https://doodle.com/poll/hig3cheyiwnyt8fr
+
+2017 10 03 00 Tue 20h @HdKdW Dorit Chrysler
+Haus Der Kulturen Der Welt: "ART WITHOUT DEATH: Russian Cosmism"
+https://www.hkw.de/de/programm/projekte/2017/art_without_death_russian_cosmism/start.php
+with Carsten Nikolai - concert performance
+
+2017 10 04 00 Wed 19h @Pierogarnia "Cryptoparty"
+https://www.meetup.com/cryptopartybln/events/239610379/
+https://www.cryptoparty.in/berlin/sprechstunde
+
+2017 10 07 00 Sat Day1/2 @TechnikMuseum VCFB.de
+2017 10 08 00 Sun Day2/2 @TechnikMuseum VCFB.de
+Inhalt: Vorträge+Workshops, Games Room, Apple Room, Chiptune-Party,
+  Benchmark-Wettbewerb, Lötworkshops, Reparierecke, Besucherpreis.
+Ort: Historische Ladestraße, Deutsches Technikmuseum,
+     https://www.openstreetmap.org/way/489441162
+     Zugang über Möckernstr. 26, 10963 Berlin
+     https://vcfb.de/2017/raumplan.html
+
+2017 10 11 00 Wed ??? 18-20h @BeLUG Vortrag zu "Gnu Screen"
+Untertitel: Window Manager fuer das Terminal
+
+2017 10 20 00 Fri DRESDEN Day0/2 Datenspuren 2017 20h Social Event?
+2017 10 21 00 Sat DRESDEN Day1/2 Datenspuren 2017
+2017 10 22 00 Sun DRESDEN Day2/2 Datenspuren 2017
+

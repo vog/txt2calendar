@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+PYTHONPATH=_build python -Bm txt2calendar "$@"
