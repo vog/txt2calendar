@@ -20,12 +20,12 @@ from pyparsing import ParseResults
 from pyparsing import QuotedString
 from pyparsing import Regex
 from pyparsing import SkipTo
+from pyparsing import StringEnd
 from pyparsing import White
 from pyparsing import Word
 from pyparsing import ZeroOrMore
 from pyparsing import tokenMap
 from pyparsing import ungroup
-from pyparsing import StringEnd
 from sys import stderr
 
 TEvent = namedtuple('Event', 'start, end, summary, labeled_uris, description')
