@@ -38,7 +38,15 @@ def LabeledUri(uri, label):
     assert isinstance(label, unicode)
     return _LabeledUri(uri=uri, label=label)
 
-EventList = namedtuple('EventList', 'events')
+_EventList = namedtuple('EventList', 'events')
+
+def event_sort_key(event):
+    return event.start, event.end, event.summary
+
+def EventList(events):
+    return _EventList(
+        events=sorted(events, key=event_sort_key),
+    )
 
 #def SingleDayEvent(start, summary, labeled_uris, description): # temp
 def SingleDayEvent(start, summary, description):
