@@ -28,7 +28,12 @@ from sys import stderr
 
 TEvent = namedtuple('Event', 'start, end, summary, labeled_uris, description')
 
-LabeledUri = namedtuple('LabeledUri', 'uri, label')
+_LabeledUri = namedtuple('LabeledUri', 'uri, label')
+
+def LabeledUri(uri, label):
+    assert isinstance(uri, str)
+    assert isinstance(label, str)
+    return _LabeledUri(uri=uri, label=label)
 
 EventList = namedtuple('EventList', 'events')
 
@@ -53,7 +58,7 @@ uri = Regex('https?://[A-Za-z0-9./-]+')
 labeled_uri = Kwargs(
     LabeledUri,
     uri.setResultsName('uri'),
-    Group(Optional(QuotedString('"'))).setResultsName('label'),
+    Combine(Optional(QuotedString('"'))).setResultsName('label'),
 )
 
 spaced_date = Kwargs(
