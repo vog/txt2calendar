@@ -26,22 +26,26 @@ from pyparsing import tokenMap
 from pyparsing import ungroup
 from sys import stderr
 
-TEvent = namedtuple('Event', 'start, end, summary, labeled_uris')
+TEvent = namedtuple('Event', 'start, end, summary, labeled_uris, description')
 
 LabeledUri = namedtuple('LabeledUri', 'uri, label')
 
 EventList = namedtuple('EventList', 'events')
 
-def SingleDayEvent(start, summary, labeled_uris):
+def SingleDayEvent(start, summary, labeled_uris, description):
     return TEvent(
         start=start,
         end=start + timedelta(days=1),
         summary=summary,
         labeled_uris=labeled_uris,
+        description=description,
     )
 
 def Kwargs(cls, *items):
     return Group(And(items)).setParseAction(lambda toks: cls(**toks[0].asDict()))
+
+def joinTokens(toks):
+    return b''.join(toks)
 
 uri = Regex('https?://[A-Za-z0-9./-]+')
 
@@ -76,7 +80,7 @@ event = Kwargs(
         SkipTo(LineEnd()),
     ]).setResultsName('summary'),
     Group(ZeroOrMore(labeled_uri)).setResultsName('labeled_uris'),
-    SkipTo(And([LineStart(), LineEnd()])).suppress(),
+    SkipTo(And([LineStart(), LineEnd()])).setParseAction(joinTokens).setResultsName('description'),
 )
 
 events = Kwargs(
@@ -91,6 +95,7 @@ def generate_ical(filepath, event_list):
         cal_event.add('dtstart', event.start)
         cal_event.add('dtend', event.start + timedelta(days=1))
         cal_event.add('summary', event.summary)
+        cal_event.add('description', event.description)
         cal.add_component(cal_event)
     ical_bytes = cal.to_ical()
     with open(filepath, 'wb') as f:
