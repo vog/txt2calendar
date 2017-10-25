@@ -33,6 +33,10 @@ LabeledUri = namedtuple('LabeledUri', 'uri, label')
 EventList = namedtuple('EventList', 'events')
 
 def SingleDayEvent(start, summary, labeled_uris, description):
+    assert isinstance(start, datetime)
+    assert isinstance(summary, str)
+    assert isinstance(labeled_uris, list)
+    assert isinstance(description, str)
     return TEvent(
         start=start,
         end=start + timedelta(days=1),
