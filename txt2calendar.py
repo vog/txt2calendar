@@ -142,11 +142,7 @@ def generate_txt(filepath, event_list):
             '{rest}'
         ).format(
             rest=''.join(
-                (
-                    '    {description_line}\n'
-                ).format(
-                    **locals()
-                )
+                '    {description_line}\n'.format(**locals())
                 for description_line in event.description.strip().split('\n')
             ),
             **locals()
