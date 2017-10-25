@@ -26,6 +26,7 @@ from pyparsing import Word
 from pyparsing import ZeroOrMore
 from pyparsing import tokenMap
 from pyparsing import ungroup
+from sys import argv
 from sys import stderr
 
 TEvent = namedtuple('Event', 'start, end, summary, labeled_uris, description')
@@ -126,8 +127,14 @@ def generate_ical(filepath, event_list):
     with open(filepath, 'wb') as f:
         f.write(ical_bytes)
 
+def usage():
+    stderr.write('Usage: txt2calendar DATA.txt\n')
+
 def main():
-    filename = '2017-09-27.events.examples.txt'
+    if len(argv) != 2:
+        usage()
+        return
+    filename = argv[1]
     e = events.parseFile(filename, parseAll=True)[0]
     ical_filename = 'txt2cal.ics'
     stderr.write('Writing {ical_filename}\n'.format(**locals()))
