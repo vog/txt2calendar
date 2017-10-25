@@ -21,9 +21,11 @@ from pyparsing import QuotedString
 from pyparsing import Regex
 from pyparsing import SkipTo
 from pyparsing import White
+from pyparsing import Word
 from pyparsing import ZeroOrMore
 from pyparsing import tokenMap
 from pyparsing import ungroup
+from pyparsing import printables
 from sys import stderr
 
 TEvent = namedtuple('Event', 'start, end, summary, labeled_uris, description')
@@ -37,7 +39,9 @@ def LabeledUri(uri, label):
 
 EventList = namedtuple('EventList', 'events')
 
-def SingleDayEvent(start, summary, labeled_uris, description):
+#def SingleDayEvent(start, summary, labeled_uris, description): # temp
+def SingleDayEvent(start, summary, description):
+    labeled_uris = [] # temp
     assert isinstance(start, datetime)
     assert isinstance(summary, str)
     assert isinstance(labeled_uris, list)
@@ -66,7 +70,7 @@ spaced_date = Kwargs(
     Regex('[0-9]{4}').setParseAction(tokenMap(int)).setResultsName('year'),
     Regex('[0-9]{2}').setParseAction(tokenMap(int)).setResultsName('month'),
     Regex('[0-9]{2}').setParseAction(tokenMap(int)).setResultsName('day'),
-    Regex('[0-9]{2}').suppress(),
+    Optional(Regex('[0-9]{2}')).suppress(),
     MatchFirst([
         Regex('[A-Z][a-z]{2}'),
         Regex('[A-Z][a-z]{1}'),
@@ -76,17 +80,28 @@ spaced_date = Kwargs(
 event = Kwargs(
     SingleDayEvent,
     spaced_date.setResultsName('start'),
-    Optional(Literal(b'???')).suppress(),
-    Optional(Regex('[0-9h:-]+')).suppress(),
-    Optional(Regex('@[^ ]+')).suppress(),
-    Optional(Regex('Day[0-9]/[0-9]')).suppress(),
-    Optional(Regex('ALLDAY')).suppress(),
+    MatchFirst([
+        And([
+            Optional(Literal(b'???')).suppress(),
+            Optional(Regex('[0-9h:-]+')).suppress(),
+            Optional(Regex('@[^ ]+')).suppress(), # location
+            Optional(Regex('Day[0-9]/[0-9]')).suppress(),
+            Optional(Regex('ALLDAY')).suppress(),
+        ]),
+        And([
+            Optional(Word(printables)).suppress(), # location
+            Optional(Regex('Day[0-9]/[0-9]')).suppress(),
+            Optional(Regex('[0-9h:-]+')).suppress(),
+        ]),
+    ]),
     MatchFirst([
         QuotedString('"'),
-        SkipTo(LineEnd()),
+        Word(printables + ' '),
     ]).setResultsName('summary'),
-    Group(ZeroOrMore(labeled_uri)).setResultsName('labeled_uris'),
-    Combine(SkipTo(And([LineStart(), LineEnd()]))).setResultsName('description'),
+    #Group(ZeroOrMore(labeled_uri)).setResultsName('labeled_uris'), # temp
+    Combine(SkipTo(
+        Literal(b'\n\n')
+    )).setResultsName('description'),
 )
 
 events = Kwargs(
