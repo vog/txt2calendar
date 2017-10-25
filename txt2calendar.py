@@ -25,7 +25,6 @@ from pyparsing import Word
 from pyparsing import ZeroOrMore
 from pyparsing import tokenMap
 from pyparsing import ungroup
-from pyparsing import printables
 from pyparsing import StringEnd
 from sys import stderr
 
@@ -85,19 +84,19 @@ event = Kwargs(
         And([
             Optional(Literal(b'???')).suppress(),
             Optional(Regex('[0-9h:-]+')).suppress(),
-            Optional(Regex('@[^ ]+')).suppress(), # location
+            Optional(Regex('@[^ \n]+')).suppress(), # location
             Optional(Regex('Day[0-9]/[0-9]')).suppress(),
             Optional(Regex('ALLDAY')).suppress(),
         ]),
         And([
-            Optional(Word(printables)).suppress(), # location
+            Optional(Regex('[^ \n]+')).suppress(), # location
             Optional(Regex('Day[0-9]/[0-9]')).suppress(),
             Optional(Regex('[0-9h:-]+')).suppress(),
         ]),
     ]),
     MatchFirst([
         QuotedString('"'),
-        Word(printables + ' '),
+        Regex('[^\n]+')
     ]).setResultsName('summary'),
     #Group(ZeroOrMore(labeled_uri)).setResultsName('labeled_uris'), # temp
     MatchFirst([
