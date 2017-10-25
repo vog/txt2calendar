@@ -153,7 +153,7 @@ def generate_txt(filepath, event_list):
         f.write(output.encode('utf-8'))
 
 def usage():
-    stderr.write('Usage: txt2calendar DATA.txt\n')
+    stderr.write('Usage: txt2calendar INPUT.txt\n')
 
 def main():
     if len(argv) != 2:
