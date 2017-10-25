@@ -66,6 +66,7 @@ spaced_date = Kwargs(
 event = Kwargs(
     SingleDayEvent,
     spaced_date.setResultsName('start'),
+    Optional(Literal(b'???')).suppress(),
     Optional(Regex('[0-9h:-]+')).suppress(),
     Optional(Regex('@[^ ]+')).suppress(),
     Optional(Regex('Day[0-9]/[0-9]')).suppress(),
