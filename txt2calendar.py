@@ -115,6 +115,7 @@ events = Kwargs(
 )
 
 def generate_ical(filepath, event_list):
+    stderr.write('Writing {filepath}\n'.format(**locals()))
     cal = Calendar()
     for event in event_list.events:
         cal_event = Event()
@@ -136,9 +137,7 @@ def main():
         return
     filename = argv[1]
     e = events.parseFile(filename, parseAll=True)[0]
-    ical_filename = 'txt2cal.ics'
-    stderr.write('Writing {ical_filename}\n'.format(**locals()))
-    generate_ical(ical_filename, e)
+    generate_ical('txt2cal.ics', e)
 
 if __name__ == '__main__':
     main()
