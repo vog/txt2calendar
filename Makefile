@@ -6,7 +6,7 @@
 default: _build/
 
 _build/:
-	pip2 install --isolated -t $@ icalendar pyparsing
+	pip2 install -t $@ icalendar pyparsing
 
 .PHONY: clean
 clean:
