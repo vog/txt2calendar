@@ -131,16 +131,23 @@ def generate_ical(filepath, event_list):
     with open(filepath, 'wb') as f:
         f.write(ical_bytes)
 
+def datetime_format_24_00(d, is_end):
+    if is_end and (d.hour, d.minute, d.second, d.microsecond) == (0, 0, 0, 0):
+        return (d - timedelta(days=1)).strftime('%Y-%m-%d 24:00')
+    return d.strftime('%Y-%m-%d %H:%M')
+
 def generate_txt(filepath, event_list):
     stderr.write('Writing {filepath}\n'.format(**locals()))
     output = '\n'.join(
         (
-            'from: {event.start:%Y-%m-%d %H:%M}\n'
-            'unto: {event.end:%Y-%m-%d %H:%M}\n'
+            'from: {start}\n'
+            'unto: {end}\n'
             'titl: {event.summary}\n'
             'rest:\n'
             '{rest}'
         ).format(
+            start=datetime_format_24_00(event.start, is_end=False),
+            end=datetime_format_24_00(event.end, is_end=True),
             rest=''.join(
                 '    {description_line}\n'.format(**locals())
                 for description_line in event.description.strip().split('\n')
