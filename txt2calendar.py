@@ -43,7 +43,7 @@ _EventList = namedtuple('EventList', 'events')
 def event_sort_key(event):
     return event.start, event.end, event.summary
 
-def EventList(events):
+def SortedEventList(events):
     return _EventList(
         events=sorted(events, key=event_sort_key),
     )
@@ -121,7 +121,7 @@ event = Kwargs(
 )
 
 events = Kwargs(
-    EventList,
+    SortedEventList,
     OneOrMore(event).setResultsName('events'),
 )
 
