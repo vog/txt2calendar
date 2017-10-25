@@ -34,8 +34,8 @@ TEvent = namedtuple('Event', 'start, end, summary, labeled_uris, description')
 _LabeledUri = namedtuple('LabeledUri', 'uri, label')
 
 def LabeledUri(uri, label):
-    assert isinstance(uri, str)
-    assert isinstance(label, str)
+    assert isinstance(uri, unicode)
+    assert isinstance(label, unicode)
     return _LabeledUri(uri=uri, label=label)
 
 EventList = namedtuple('EventList', 'events')
@@ -44,9 +44,9 @@ EventList = namedtuple('EventList', 'events')
 def SingleDayEvent(start, summary, description):
     labeled_uris = [] # temp
     assert isinstance(start, datetime)
-    assert isinstance(summary, str)
+    assert isinstance(summary, unicode)
     assert isinstance(labeled_uris, list)
-    assert isinstance(description, str)
+    assert isinstance(description, unicode)
     return TEvent(
         start=start,
         end=start + timedelta(days=1),
@@ -58,12 +58,15 @@ def SingleDayEvent(start, summary, description):
 def Kwargs(cls, *items):
     return Group(And(items)).setParseAction(lambda toks: cls(**toks[0].asDict()))
 
+def decodeUtf8(b):
+    return b.decode('utf-8')
+
 uri = Regex('https?://[A-Za-z0-9./-]+')
 
 labeled_uri = Kwargs(
     LabeledUri,
-    uri.setResultsName('uri'),
-    Combine(Optional(QuotedString('"'))).setResultsName('label'),
+    uri.setParseAction(tokenMap(decodeUtf8)).setResultsName('uri'),
+    Combine(Optional(QuotedString('"'))).setParseAction(tokenMap(decodeUtf8)).setResultsName('label'),
 )
 
 spaced_date = Kwargs(
@@ -98,7 +101,7 @@ event = Kwargs(
     MatchFirst([
         QuotedString('"'),
         Regex('[^\n]+')
-    ]).setResultsName('summary'),
+    ]).setParseAction(tokenMap(decodeUtf8)).setResultsName('summary'),
     #Group(ZeroOrMore(labeled_uri)).setResultsName('labeled_uris'), # temp
     MatchFirst([
         SkipTo(Literal(b'\n\n')),
@@ -106,7 +109,7 @@ event = Kwargs(
             Literal(b'\n'),
             StringEnd(),
         ])),
-    ]).setResultsName('description'),
+    ]).setParseAction(tokenMap(decodeUtf8)).setResultsName('description'),
 )
 
 events = Kwargs(
