@@ -48,9 +48,6 @@ def SingleDayEvent(start, summary, labeled_uris, description):
 def Kwargs(cls, *items):
     return Group(And(items)).setParseAction(lambda toks: cls(**toks[0].asDict()))
 
-def joinTokens(toks):
-    return b''.join(toks)
-
 uri = Regex('https?://[A-Za-z0-9./-]+')
 
 labeled_uri = Kwargs(
@@ -84,7 +81,7 @@ event = Kwargs(
         SkipTo(LineEnd()),
     ]).setResultsName('summary'),
     Group(ZeroOrMore(labeled_uri)).setResultsName('labeled_uris'),
-    SkipTo(And([LineStart(), LineEnd()])).setParseAction(joinTokens).setResultsName('description'),
+    Combine(SkipTo(And([LineStart(), LineEnd()]))).setResultsName('description'),
 )
 
 events = Kwargs(
