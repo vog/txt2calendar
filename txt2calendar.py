@@ -26,6 +26,7 @@ from pyparsing import ZeroOrMore
 from pyparsing import tokenMap
 from pyparsing import ungroup
 from pyparsing import printables
+from pyparsing import StringEnd
 from sys import stderr
 
 TEvent = namedtuple('Event', 'start, end, summary, labeled_uris, description')
@@ -99,9 +100,13 @@ event = Kwargs(
         Word(printables + ' '),
     ]).setResultsName('summary'),
     #Group(ZeroOrMore(labeled_uri)).setResultsName('labeled_uris'), # temp
-    Combine(SkipTo(
-        Literal(b'\n\n')
-    )).setResultsName('description'),
+    MatchFirst([
+        SkipTo(Literal(b'\n\n')),
+        SkipTo(And([
+            Literal(b'\n'),
+            StringEnd(),
+        ])),
+    ]).setResultsName('description'),
 )
 
 events = Kwargs(

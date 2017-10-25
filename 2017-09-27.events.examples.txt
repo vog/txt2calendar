@@ -139,4 +139,3 @@ Untertitel: Window Manager fuer das Terminal
 2017 10 20 00 Fri DRESDEN Day0/2 Datenspuren 2017 20h Social Event?
 2017 10 21 00 Sat DRESDEN Day1/2 Datenspuren 2017
 2017 10 22 00 Sun DRESDEN Day2/2 Datenspuren 2017
-
