@@ -131,6 +131,31 @@ def generate_ical(filepath, event_list):
     with open(filepath, 'wb') as f:
         f.write(ical_bytes)
 
+def generate_txt(filepath, event_list):
+    stderr.write('Writing {filepath}\n'.format(**locals()))
+    output = '\n'.join(
+        (
+            'from: {event.start:%Y-%m-%d %H:%M}\n'
+            'unto: {event.end:%Y-%m-%d %H:%M}\n'
+            'titl: {event.summary}\n'
+            'rest:\n'
+            '{rest}'
+        ).format(
+            rest=''.join(
+                (
+                    '    {description_line}\n'
+                ).format(
+                    **locals()
+                )
+                for description_line in event.description.strip().split('\n')
+            ),
+            **locals()
+        )
+        for event in event_list.events
+    )
+    with open(filepath, 'wb') as f:
+        f.write(output.encode('utf-8'))
+
 def usage():
     stderr.write('Usage: txt2calendar DATA.txt\n')
 
@@ -141,6 +166,7 @@ def main():
     filename = argv[1]
     e = events.parseFile(filename, parseAll=True)[0]
     generate_ical('txt2cal.ics', e)
+    generate_txt('txt2cal.txt', e)
 
 if __name__ == '__main__':
     main()
