@@ -28,6 +28,8 @@ from pyparsing import tokenMap
 from pyparsing import ungroup
 from sys import argv
 from sys import stderr
+from sys import stdin
+from sys import stdout
 
 TEvent = namedtuple('Event', 'start, end, summary, labeled_uris, description')
 
@@ -125,8 +127,10 @@ events = Kwargs(
     OneOrMore(event).setResultsName('events'),
 )
 
-def generate_ical(filepath, event_list):
-    stderr.write('Writing {filepath}\n'.format(**locals()))
+def parse(fileobj):
+    return events.parseFile(fileobj, parseAll=True)[0]
+
+def generate_ics(fileobj, event_list):
     cal = Calendar()
     for event in event_list.events:
         cal_event = Event()
@@ -136,16 +140,14 @@ def generate_ical(filepath, event_list):
         cal_event.add('description', event.description)
         cal.add_component(cal_event)
     ical_bytes = cal.to_ical()
-    with open(filepath, 'wb') as f:
-        f.write(ical_bytes)
+    fileobj.write(ical_bytes)
 
 def datetime_format_24_00(d, is_end):
     if is_end and (d.hour, d.minute, d.second, d.microsecond) == (0, 0, 0, 0):
         return (d - timedelta(days=1)).strftime('%Y-%m-%d 24:00')
     return d.strftime('%Y-%m-%d %H:%M')
 
-def generate_txt(filepath, event_list):
-    stderr.write('Writing {filepath}\n'.format(**locals()))
+def generate_txt(fileobj, event_list):
     output = '\n'.join(
         (
             'from: {start}\n'
@@ -164,20 +166,44 @@ def generate_txt(filepath, event_list):
         )
         for event in event_list.events
     )
-    with open(filepath, 'wb') as f:
-        f.write(output.encode('utf-8'))
+    fileobj.write(output.encode('utf-8'))
 
-def usage():
-    stderr.write('Usage: txt2calendar INPUT.txt\n')
+def usage(generators):
+    stderr.write(
+        'txt2calendar 0.1\n'
+        '\n'
+        'Usage:\n'
+        '\n'
+        '    txt2calendar OUTPUT_FORMAT < INPUT_FILE > OUTPUT_FILE\n'
+        '\n'
+        'Input format:\n'
+        '\n'
+        '    recognized automatically\n'
+        '\n'
+        'Output formats:\n'
+        '\n'
+        '    ' + ', '.join(sorted(generators.iterkeys())) + '\n'
+        '\n'
+        'Example:\n'
+        '\n'
+        '    txt2calendar ics < input.txt > output.ics\n'
+        '\n'
+    )
 
 def main():
+    generators = {
+        'ics': generate_ics,
+        'txt': generate_txt,
+    }
     if len(argv) != 2:
-        usage()
-        return
-    filename = argv[1]
-    e = events.parseFile(filename, parseAll=True)[0]
-    generate_ical('txt2cal.ics', e)
-    generate_txt('txt2cal.txt', e)
+        return usage(generators)
+    output_format = argv[1]
+    try:
+        generate = generators[output_format]
+    except KeyError:
+        return usage(generators)
+    e = parse(stdin)
+    generate(stdout, e)
 
 if __name__ == '__main__':
     main()
