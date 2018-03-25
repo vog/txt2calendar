@@ -3,10 +3,15 @@
 .DELETE_ON_ERROR:
 
 .PHONY: default
-default: _build/
+default: check
 
 _build/:
-	pip2 install -t $@ icalendar pyparsing
+	pip2 install -t $@ icalendar pyparsing pytest
+
+.PHONY: check
+check: _build/
+	@PYTHONPATH=_build python2 -Bm pytest --strict -p no:cacheprovider -vv -- src
+	@echo ok
 
 .PHONY: clean
 clean:
