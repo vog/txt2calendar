@@ -35,18 +35,20 @@ def parse_linegroups(block):
         yield linegroup
 
 def parse_field(linegroup):
-    first_line = linegroup['first_line']
+    orig_first_line = linegroup['first_line']
     additional_lines = linegroup['additional_lines']
-    m = match(r'([^:]+):\s*(.*)$', first_line)
+    m = match(r'([^:]+):\s*(.*)$', orig_first_line)
     if m is None:
         return {
             'field_name': 'unknown',
-            'value_lines': additional_lines,
+            'first_line': orig_first_line,
+            'additional_lines': additional_lines,
         }
-    field_name, value_first_line = m.groups()
+    field_name, first_line = m.groups()
     return {
         'field_name': field_name,
-        'value_lines': [value_first_line] + additional_lines,
+        'first_line': first_line,
+        'additional_lines': additional_lines,
     }
 
 def parse_record(block):

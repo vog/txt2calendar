@@ -7,14 +7,17 @@ def render_str(o, s):
 def render_record(o, record):
     for field in record:
         field_name = field['field_name']
-        value_lines = field['value_lines']
+        first_line = field['first_line']
+        additional_lines = field['additional_lines']
         render_str(o, field_name)
         render_str(o, ':')
-        for value_line in value_lines:
+        if first_line != '':
             render_str(o, ' ')
-            render_str(o, value_line)
-            render_str(o, '\n')
-        if len(value_lines) == 0:
+            render_str(o, first_line)
+        render_str(o, '\n')
+        for line in additional_lines:
+            render_str(o, ' ')
+            render_str(o, line)
             render_str(o, '\n')
 
 def render_records(fileobj, records):

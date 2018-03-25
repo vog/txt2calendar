@@ -4,20 +4,30 @@ __copyright__ = 'Copyright (C) Volker Diels-Grabsch <v@njh.eu>'
 from .render_records import render_records
 
 def render_event_date(event_date):
-    return [event_date['text']]
+    return {
+        'first_line': event_date['text'],
+        'additional_lines': [],
+    }
 
 def render_event_mott(event_mott):
     if event_mott == '':
         return None
-    return [event_mott]
+    return {
+        'first_line': event_mott,
+        'additional_lines': [],
+    }
 
 def render_event_tags(event_tags):
-    if len(event_tags) == 0:
-        return []
-    return [' '.join(sorted(event_tags))]
+    return {
+        'first_line': ' '.join(sorted(event_tags)),
+        'additional_lines': [],
+    }
 
 def render_event_titl(event_titl):
-    return event_titl
+    return {
+        'first_line': event_titl[0],
+        'additional_lines': event_titl[1:],
+    }
 
 def render_event(event):
     field_renderers = [
@@ -29,17 +39,15 @@ def render_event(event):
     recognized_fields = [
         {
             'field_name': field_name,
-            'value_lines': field_renderer(event[field_name]),
+            'first_line': renderer_result['first_line'],
+            'additional_lines': renderer_result['additional_lines'],
         }
         for field_renderer in field_renderers
         for field_name in [field_renderer.func_name.decode('ascii')[len('render_event_'):]]
-        for value_lines in [field_renderer(event[field_name])]
-        if value_lines is not None
+        for renderer_result in [field_renderer(event[field_name])]
+        if renderer_result is not None
     ]
-    unrecognized_fields = sorted(
-        field
-        for field in event['unrecognized']
-    )
+    unrecognized_fields = sorted(event['unrecognized'], key=lambda field: field['field_name'])
     record = recognized_fields + unrecognized_fields
     return record
 

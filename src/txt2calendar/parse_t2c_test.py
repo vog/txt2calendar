@@ -43,9 +43,8 @@ def test_parse_t2c():
             'unrecognized': [
                 {
                     'field_name': 'mott_2',
-                    'value_lines': [
-                        'learn to code for free!',
-                    ],
+                    'first_line': 'learn to code for free!',
+                    'additional_lines': [],
                 },
             ],
         },
@@ -70,27 +69,23 @@ def test_parse_t2c():
             'unrecognized': [
                 {
                     'field_name': 'home',
-                    'value_lines': [
-                        'https://www.meetup.com/FreeCodeCamp-Berlin/events/245113121',
-                    ],
+                    'first_line': 'https://www.meetup.com/FreeCodeCamp-Berlin/events/245113121',
+                    'additional_lines': [],
                 },
                 {
                     'field_name': 'host',
-                    'value_lines': [
-                        '@BodoEichstaedt',
-                    ],
+                    'first_line': '@BodoEichstaedt',
+                    'additional_lines': [],
                 },
                 {
                     'field_name': 'link',
-                    'value_lines': [
-                        'https://github.com/FreeCodeCamp http://example.com/FreeCodeCamp2',
-                    ],
+                    'first_line': 'https://github.com/FreeCodeCamp http://example.com/FreeCodeCamp2',
+                    'additional_lines': [],
                 },
                 {
                     'field_name': 'venu',
-                    'value_lines': [
-                        '@INBerlinev Lehrter Str 53, 10557 Berlin http://www.in-berlin.de/space/',
-                    ],
+                    'first_line': '@INBerlinev Lehrter Str 53, 10557 Berlin http://www.in-berlin.de/space/',
+                    'additional_lines': [],
                 },
             ],
         },
